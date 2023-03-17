@@ -1,0 +1,9 @@
+body {
+  margin: 0;
+}
+#navbar {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  color: white;
+}
