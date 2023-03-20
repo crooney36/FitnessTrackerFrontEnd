@@ -3,6 +3,7 @@ import { BASE_URL } from './index';
 export const getAllRoutines = async () => {
     try {
     const response = await fetch(`${BASE_URL}/routines`, {
+    //   method: "GET",
       headers: {
       'Content-Type': 'application/json',
       },
