@@ -1,4 +1,4 @@
-import BASE_URL from "/index.js";
+import { BASE_URL } from "./index.js";
 
 // Register User to Database
 export const registerUser = async (username, password) => {
@@ -45,17 +45,17 @@ export const loginUser = async (username, password) => {
 };
 
 // Get User from Database
-fetch(`${BASE_URL}/api/users/me`, {
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${TOKEN}`,
-  },
-})
-  .then((response) => response.json())
-  .then((result) => {
-    console.log(result);
-  })
-  .catch(console.error);
+// fetch(`${BASE_URL}/api/users/me`, {
+//   headers: {
+//     "Content-Type": "application/json",
+//     Authorization: `Bearer ${TOKEN}`,
+//   },
+// })
+//   .then((response) => response.json())
+//   .then((result) => {
+//     console.log(result);
+//   })
+//   .catch(console.error);
 
 // Get user routines from Database
 export const myData = async () => {
