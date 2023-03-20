@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Home, Login, MyRoutines, Activities, Register, Navbar } from "./";
+import { Home, Login, MyRoutines, Activities, Register, Navbar, Routine } from "./";
 
 const Main = () => {
   const [user, setUser] = useState(null);
@@ -18,6 +18,7 @@ const Main = () => {
     <div id="main">
       <Navbar isLoggedIn={isLoggedIn} />
       <Routes>
+      <Route path="routines" element={<Routine />} />
         <Route path="/" element={<Home />} />
         <Route
           path="/login"
