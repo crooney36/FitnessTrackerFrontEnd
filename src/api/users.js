@@ -24,7 +24,7 @@ export const registerUser = async (username, password) => {
 };
 
 // Login User to Database
-const loginUser = async (username, password) => {
+export const loginUser = async (username, password) => {
   try {
     const response = await fetch(`${BASE_URL}/users/login`, {
       method: "POST",
