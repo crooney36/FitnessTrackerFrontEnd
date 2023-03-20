@@ -24,7 +24,6 @@ const Main = () => {
           element={<Login user={user} setUser={setUser} />}
         />
       </Routes>
-      React Boilerplate
     </div>
   );
 };

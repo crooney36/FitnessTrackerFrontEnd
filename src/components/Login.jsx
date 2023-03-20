@@ -1,9 +1,26 @@
 import React from "react";
-import loginUser from "../api";
+import { loginUser } from "../api/users";
+import { Link } from "react-router-dom";
 
 const Login = (props) => {
-  const { user, setUser } = props;
-  const { username, password } = user;
+  const { username, setUsername } = props;
+  const { password, setPassword } = props;
+  const { token, setToken } = props;
+  const { isLoggedIn, setLoggedIn } = props;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const user = await loginUser(username, password);
+    if (user) {
+      setUsername(user.username);
+      setPassword(user.password);
+      setToken(user.token);
+      localStorage.setItem("token", user.token);
+      setLoggedIn(true);
+    } else {
+      console.log("Login Failed");
+    }
+  };
 
   return (
     <div id="login">
@@ -27,9 +44,11 @@ const Login = (props) => {
           value={password}
           onChange={(e) => setUser({ ...user, password: e.target.value })}
         />
-        <button type="submit">Login</button>
+        <button type="submit" onClick={handleSubmit}>
+          Register Here!
+        </button>
       </form>
-      {/* <Link to="/Register">Register Here!</Link> */}
+      <Link to="/Register">Register Here!</Link>
     </div>
   );
 };
