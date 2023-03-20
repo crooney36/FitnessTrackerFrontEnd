@@ -18,9 +18,16 @@ const Routine = () => {
         AllRoutines();
     }, [])
     
+    
     return (
         <div id="routine">
-            <div id="routine-title">Routine</div>
+            {
+                routines.length ? routines.map((routine)=>{
+
+            }): null
+
+            }
+            <h1>Routines!</h1>
         </div>
     );
 };
