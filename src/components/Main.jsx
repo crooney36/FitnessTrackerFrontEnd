@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Home, Login, MyRoutines, Activities, Register } from "/components";
-import { Navbar } from "../components";
+import { Home, Login, MyRoutines, Activities, Register } from "./";
+import { Navbar } from "./";
 
 const Main = () => {
   const [user, setUser] = useState(null);
