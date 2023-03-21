@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { Main, Home, Register, Login, Routine, Activities, MyRoutines } from "./components";
+import { Main } from "./components";
 import {
   createBrowserRouter,
   createRoutesFromElements,

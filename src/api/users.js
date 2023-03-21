@@ -9,10 +9,8 @@ export const registerUser = async (username, password) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        user: {
-          username: username,
-          password: password,
-        },
+        username: username,
+        password: password,
       }),
     });
     const result = await response.json();
@@ -37,15 +35,15 @@ export const loginUser = async (username, password) => {
       }),
     });
     const result = await response.json();
-    console.log(result);
     return result;
   } catch (err) {
     console.error(err);
   }
 };
 
-// // Get User from Database
-// fetch(`${BASE_URL}/api/users/me`, {
+
+// Get User from Database
+// fetch(`${BASE_URL}/users/me`, {
 //   headers: {
 //     "Content-Type": "application/json",
 //     Authorization: `Bearer ${TOKEN}`,
