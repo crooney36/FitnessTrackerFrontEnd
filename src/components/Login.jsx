@@ -3,10 +3,10 @@ import { loginUser } from "../api/users";
 import { Link } from "react-router-dom";
 
 const Login = (props) => {
-  const { username, setUsername } = props;
-  const { password, setPassword } = props;
-  const { token, setToken } = props;
-  const { isLoggedIn, setLoggedIn } = props;
+  const [ username, setUsername ] = props;
+  const [ password, setPassword ] = props;
+  const [ token, setToken ] = props;
+  const [ isLoggedIn, setLoggedIn ] = props;
 
   const handleSubmit = async (e) => {
     e.preventDefault();

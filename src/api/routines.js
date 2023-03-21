@@ -23,7 +23,7 @@ export const createNewRoutine = async (name, goal, isPublic) => {
         method: "POST",
         headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${TOKEN}`
+        'Authorization': `Bearer ${localStorage.getItem("token")}`
         },
         body: JSON.stringify({
           name: name,
