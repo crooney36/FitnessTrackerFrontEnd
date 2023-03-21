@@ -35,7 +35,17 @@ const Activities = () => {
             {
                 // isLoggedIn ? <button onClick={() => navigate("/routines/create-new-routine")}>Create New Routine!</button> : null 
             }
-            
+            {
+                activities.length ? activities.map((activity, idx) =>{
+                    return(
+                        <div className="allActivities" key={`activity: ${idx}`}>
+                            <h1>Activity Name: {activity.name}</h1>
+                            <h2>Description: {activity.description}</h2>
+                            <p>______________________</p>
+                        </div>
+                    )
+                }): null 
+            }
         </div>
     )
 

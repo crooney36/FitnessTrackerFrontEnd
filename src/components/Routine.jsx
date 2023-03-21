@@ -37,7 +37,7 @@ const Routine = () => {
                 routines.length ? routines.map((routine, idx)=>{
                     return(
                         
-                        <div className="AllPublicRoutines" key ={`routine: ${idx}`}>
+                        <div className="AllPublicRoutines" key={`routine: ${idx}`}>
                             <h1>{routine.name}</h1>
                             <h2>Goal: {routine.goal}</h2>
                             <h3>Creator: {routine.creatorName}</h3>
