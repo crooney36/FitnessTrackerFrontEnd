@@ -11,32 +11,37 @@ import {
 } from "./";
 
 const Main = () => {
-  // const [user, setUser] = useState(null);
-  // const [username, setUsername] = useState("");
-  const [token, setToken] = useState("");
+  const [token, setToken] = useState();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    if (token) {
-      setIsLoggedIn(true);
-    }
-  }, [token]);
+  // useEffect(() => {
+  //   if (token) {
+  //     setIsLoggedIn(true);
+  //   }
+  // }, [token]);
 
   return (
     <div id="main">
-      <Navbar isLoggedIn={isLoggedIn} />
+      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Routes>
         <Route path="routines" element={<Routine />} />
         <Route path="/" element={<Home />} />
         <Route
           path="/login"
+          element={<Login />}
           setIsLoggedIn={setIsLoggedIn}
           isLoggedIn={isLoggedIn}
           token={token}
           setToken={setToken}
-          element={<Login />}
         />
-        <Route path="/Register" element={<Register />} />
+        <Route
+          path="/Register"
+          element={<Register />}
+          setIsLoggedIn={setIsLoggedIn}
+          isLoggedIn={isLoggedIn}
+          token={token}
+          setToken={setToken}
+        />
       </Routes>
     </div>
   );

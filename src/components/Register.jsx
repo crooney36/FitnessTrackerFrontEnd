@@ -2,35 +2,49 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { registerUser } from "../api/users";
 
-const Register = () => {
+const Register = (props) => {
+  const setIsLoggedIn = props.setIsLoggedIn;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
   const Navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (password === confirmedPassword) {
+    console.log(username);
+    console.log(password);
+    // if (password === confirmedPassword) {
+    try {
       console.log("Passwords Match");
       const user = await registerUser(username, password);
+      console.log(user, "//////");
       if (user) {
         console.log("Registering...");
+        localStorage.setItem("token", user.token);
+        // setToken("token");
+        setIsLoggedIn(true);
         Navigate("/");
       }
-    } else {
-      console.log("Passwords Do Not Match");
+    } catch (error) {
+      console.error("Registration Failed", error);
     }
+    // } else {
+    //   console.log("Passwords Do Not Match, registration failed!");
+    // }
   };
 
   return (
     <div id="register">
       <div id="register-title">Register</div>
-      <form id="register-form">
+      <form
+        id="registration-form"
+        onSubmit={(element) => {
+          element.preventDefault();
+          handleSubmit();
+        }}
+      >
         <label htmlFor="username">Username</label>
         <input
           type="text"
-          id="username"
-          name="username"
           required
           value={username}
           onChange={(e) => {
@@ -40,8 +54,6 @@ const Register = () => {
         <label htmlFor="password">Password</label>
         <input
           type="password"
-          id="password"
-          name="password"
           required
           value={password}
           onChange={(e) => {
@@ -51,8 +63,6 @@ const Register = () => {
         <label htmlFor="confirmedPassword">Confirm Password</label>
         <input
           type="password"
-          id="confirmedPassword"
-          name="confirmedPassword"
           required
           value={confirmedPassword}
           onChange={(e) => {

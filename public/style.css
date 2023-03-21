@@ -6,4 +6,6 @@ body {
   display: flex;
   align-items: center;
   color: white;
+  padding: 0 1rem;
+  height: 3rem;
 }
