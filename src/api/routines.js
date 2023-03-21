@@ -18,26 +18,26 @@ export const getAllRoutines = async () => {
 };
 
 export const createNewRoutine = async (name, goal, isPublic) => {
-  try {
-    const response = await fetch(`${BASE_URL}/routines`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${TOKEN}`,
-      },
-      body: JSON.stringify({
-        name: name,
-        goal: goal,
-        isPublic: isPublic,
-      }),
-    });
-    const result = await response.json();
-    console.log(result);
-    return result;
-  } catch (err) {
-    console.error(err);
-  }
-};
+    try {
+      const response = await fetch(`${BASE_URL}/routines`, {
+        method: "POST",
+        headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify({
+          name: name,
+          goal: goal,
+          isPublic: isPublic,
+        })
+      });
+      const result = await response.json();
+      console.log(result);
+      return result
+    } catch (err) {
+      console.error(err);
+    }
+}
 
 export const updateRoutine = async (name, goal, isPublic, routineId) => {
   try {

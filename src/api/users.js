@@ -41,9 +41,6 @@ export const loginUser = async (username, password) => {
   }
 };
 
-// registerUser("crooney", "1234");
-// const data = loginUser("crooney", "1234");
-// localStorage.setItem("token", data.token);
 
 // Get User from Database
 // fetch(`${BASE_URL}/users/me`, {
