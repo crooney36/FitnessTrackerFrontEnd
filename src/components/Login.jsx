@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { loginUser } from "../api/users";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -19,7 +19,9 @@ const Login = (props) => {
       console.log("Logging in...");
       localStorage.setItem("token", data.token);
       setToken(localStorage.getItem(token));
+      console.log(token, "token");
       setIsLoggedIn(true);
+      console.log(isLoggedIn);
       Navigate("/");
     } else {
       console.log("Login Failed");
@@ -36,7 +38,7 @@ const Login = (props) => {
           handleSubmit();
         }}
       >
-        <label htmlFor="username">Username</label>
+        <label htmlFor="username">Username:</label>
         <input
           type="text"
           required
@@ -45,7 +47,7 @@ const Login = (props) => {
             setUsername(e.target.value);
           }}
         />
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">Password:</label>
         <input
           type="current-password"
           required

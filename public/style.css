@@ -1,5 +1,6 @@
 body {
   margin: 0;
+  background-color: slategray;
 }
 #navbar {
   background-color: black;
@@ -8,4 +9,34 @@ body {
   color: white;
   padding: 0 1rem;
   height: 3rem;
+}
+
+#login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  border: 1px solid black;
+}
+
+#register {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  border: 1px solid black;
+}
+
+input {
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+
+label {
+  margin: 0.5rem;
+}
+
+button {
+  margin: 0.5rem;
+  padding: 0.5rem;
 }

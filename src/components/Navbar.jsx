@@ -1,11 +1,15 @@
 import { Button } from "antd";
 import { Link, Navigate, useNavigate } from "react-router-dom";
-import React from "react";
+import React, { useEffect } from "react";
 
 const Navbar = (props) => {
   const isLoggedIn = props.isLoggedIn;
   const setIsLoggedIn = props.setIsLoggedIn;
   const Navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(isLoggedIn);
+  }, [isLoggedIn]);
 
   return (
     <div id="navbar">
@@ -18,7 +22,9 @@ const Navbar = (props) => {
         <Button
           onClick={() => {
             localStorage.removeItem("token");
+            console.log(isLoggedIn);
             setIsLoggedIn(false);
+            console.log(isLoggedIn);
             Navigate("/");
           }}
         >
