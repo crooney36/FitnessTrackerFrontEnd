@@ -8,14 +8,22 @@ const [goal, setGoal] = useState("");
 const [isPublic, setIsPublic] = useState("");
 
 async function sendNewRoutine(name, goal, isPublic){
-    try {
-        const result = await createNewRoutine(name, goal, isPublic)
-        setName(name);
-        setGoal(goal);
-        setIsPublic(isPublic);
-        return result
-    } catch (error) {
-        throw error;
+    if(!name || !goal){
+        window.alert("Routine name and/or goal must be filled out")
+        return null
+    }else if(name.length < 3 || goal.length < 3){
+        window.alert("Routine name and/or goal are too short")
+        return null
+    }else{
+        try {
+            const result = await createNewRoutine(name, goal, isPublic)
+            setName(name);
+            setGoal(goal);
+            setIsPublic(isPublic);
+            return result
+        } catch (error) {
+            throw error;
+        }
     }
 }
 
@@ -32,7 +40,7 @@ return(
         <input
           name="name"
           type="text"
-          value={setName}
+          value={name}
           onChange={(event) => {
             setName(event.target.value);
           }}
@@ -43,7 +51,7 @@ return(
         <input
           name="goal"
           type="text"
-          value={setGoal}
+          value={goal}
           onChange={(event) => {
             setGoal(event.target.value);
           }}
@@ -54,7 +62,7 @@ return(
         <input
           name="public"
           type="text"
-          value={setIsPublic}
+          value={isPublic}
           onChange={(event) => {
             setIsPublic(event.target.value);
           }}
