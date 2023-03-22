@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react"
 import { updateRoutine } from "../api/routines"
 import { useNavigate } from "react-router";
 import { Switch } from 'antd';
-import { Link } from "react-router-dom";
-
+import { Link, useParams } from "react-router-dom";
 
 const EditRoutine = () => {
     const [name, setName] = useState("");
@@ -15,8 +14,9 @@ const EditRoutine = () => {
         setIsPublic(checked)
     };
     const App = () => <Switch defaultChecked onChange={onChange} />;
+    let { routineId } = useParams()
 
-async function sendUpdatedRoutine(name, goal, isPublic){
+async function sendUpdatedRoutine(name, goal, isPublic, routineId){
     try {
         const result = await updateRoutine(name, goal, isPublic, routineId)
         setName(name);
@@ -34,7 +34,7 @@ async function sendUpdatedRoutine(name, goal, isPublic){
     <form className="form"
     onSubmit={(event) => {
       event.preventDefault();
-      sendUpdatedRoutine(name, goal, isPublic);
+      sendUpdatedRoutine(name, goal, isPublic, routineId);
     }}>
         
       <label>

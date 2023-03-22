@@ -9,6 +9,7 @@ const Login = (props) => {
   //   const setIsLoggedIn = props.setIsLoggedIn;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const setUser = props.setUser
   const Navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -17,6 +18,7 @@ const Login = (props) => {
       console.log("Logging in...");
       localStorage.setItem("token", data.token);
       setToken(localStorage.getItem("token"));
+      setUser(username)
       //   setIsLoggedIn(true);
       //   console.log(isLoggedIn);
       Navigate("/");
