@@ -20,7 +20,6 @@ const Activities = () => {
         // }
         return result;
         } catch(error) {
-            window.alert(error)
             throw error
         }
         

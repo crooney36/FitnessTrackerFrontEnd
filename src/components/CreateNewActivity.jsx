@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react"
 import { postActivity } from "../api/activities"
 import { Link } from "react-router-dom";
+import { useNavigate } from "react-router";
 
 const CreateNewActivity = () => {
     const [name, setName] = useState("");
     const [description, setDescription] = useState("");
+    let navigate = useNavigate()
 
     async function sendNewActivity(name, description){
         if(!name || !description){
@@ -18,7 +20,12 @@ const CreateNewActivity = () => {
                 const result = await postActivity(name, description)
                 setName(name)
                 setDescription(description)
-                return result
+                if(result.error){
+                    return null  
+                }else{
+                    navigate("/activities")
+                    return result
+                }
             } catch (error) {
                 window.alert(error)
                 throw error
@@ -37,29 +44,28 @@ return(
       
             <label>
             Name:
-            <input
+                <input
                 name="name"
                 type="text"
                 value={name}
                 onChange={(event) => {
                     setName(event.target.value);
-                }}
-            />
+                }}/>
             </label>
 
             <label>
             description:
-            <input
+                <input
                 name="description"
                 type="text"
                 value={description}
                 onChange={(event) => {
                     setDescription(event.target.value);
-                }}
-            />
+                }}/>
             </label>
+
             <button type="submit">Submit</button>
-            <Link to="/activities">Go back</Link>
+            <Link className="goBackLink" to="/activities">Go back</Link>
         </form>
     </div>
     

@@ -32,6 +32,9 @@ export const createNewRoutine = async (name, goal, isPublic) => {
         })
       });
       const result = await response.json();
+      if(result.error){
+        window.alert(result.error)
+      }
       console.log(result);
       return result
     } catch (err) {
