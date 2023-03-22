@@ -17,9 +17,10 @@ const Login = (props) => {
     if (data && data.token) {
       console.log("Logging in...");
       localStorage.setItem("token", data.token);
+      localStorage.setItem("username", username);
       setToken(localStorage.getItem("token"));
       setUser(username)
-      //   setIsLoggedIn(true);
+      setIsLoggedIn(true);
       //   console.log(isLoggedIn);
       Navigate("/");
     } else {

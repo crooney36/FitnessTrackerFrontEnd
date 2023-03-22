@@ -14,23 +14,27 @@ import {
 } from "./";
 const Main = () => {
   const [token, setToken] = useState("");
-  const [user, setUser] = useState();
-  // const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // useEffect(() => {
-  //   if (token) {
-  //     setIsLoggedIn(true);
-  //     console.log(isLoggedIn, "if");
-  //   } else {
-  //     setIsLoggedIn(false);
-  //     console.log(isLoggedIn, "else");
-  //   }
-  // }, [token]);
+  useEffect(() => {
+    const localStorageToken = localStorage.getItem("token")
+    const localStorageUsername = localStorage.getItem("username")
+    if (localStorageToken) {
+      setIsLoggedIn(true);
+      setToken(localStorageToken)
+      setUser(localStorageUsername)
+      console.log(isLoggedIn, "if");
+    } else {
+      setIsLoggedIn(false);
+      console.log(isLoggedIn, "else");
+    }
+  }, []);
 
   return (
     <div id="main">
       <Navbar
-        // isLoggedIn={isLoggedIn}
+        isLoggedIn={isLoggedIn}
         // setIsLoggedIn={setIsLoggedIn}
         setToken={setToken}
       />

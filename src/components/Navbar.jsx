@@ -6,6 +6,7 @@ const Navbar = (props) => {
   // const isLoggedIn = props.isLoggedIn;
   // const setIsLoggedIn = props.setIsLoggedIn;
   const setToken = props.setToken;
+  const isLoggedIn = props.isLoggedIn
   const Navigate = useNavigate();
 
   return (
@@ -15,7 +16,7 @@ const Navbar = (props) => {
         <Link to="/">
           <Button>Home</Button>
         </Link>
-        {!localStorage.getItem("token") ? (
+        {!isLoggedIn ? (
           <Link to="/login">
             <Button>Login</Button>
           </Link>
