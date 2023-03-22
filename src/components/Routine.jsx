@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { getAllRoutines } from "../api/routines"
 import { useNavigate } from "react-router";
+import { useParams } from "react-router";
 
 const Routine = () => {
     const [routines, setRoutines] = useState([]);
     const [ token, setToken ] = useState(null);
     const [ isLoggedIn, setLoggedIn ] = useState(true);
     let navigate = useNavigate();
-
+    let { routineId } = useParams()
     const AllRoutines = async () => {
         try {
             const result = await getAllRoutines();
@@ -52,6 +53,10 @@ const Routine = () => {
                                             <p>Count: {activity.count}</p>
                                             <p>Duration: {activity.duration} minutes</p>
                                             <p>______________________</p>
+                                            {
+                                                <button onClick={() => navigate("/routines/edit-routine")} >Edit</button>
+                                            }
+                                           
                                         </div>
                                     )
                                 }):null

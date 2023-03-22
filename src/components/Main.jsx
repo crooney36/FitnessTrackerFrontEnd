@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Home, Login, MyRoutines, Activities, Register, Navbar, Routine, CreateNewRoutine, CreateNewActivity } from "./";
+import { Home, Login, MyRoutines, Activities, Register, Navbar, Routine, CreateNewRoutine, CreateNewActivity, EditRoutine } from "./";
 const Main = () => {
   const [token, setToken] = useState("");
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -25,8 +25,10 @@ const Main = () => {
       <Routes>
       <Route path="routines" element={<Routine />} />
       <Route path="routines/create-new-routine" element={<CreateNewRoutine />} />
+      <Route path="routines/edit-routine" element={<EditRoutine />} />
       <Route path="activities" element={<Activities />} />
-      <Route path="activities/create-new-activity" element={<CreateNewActivity />} />
+      <Route path="activities/create-new-activity:id" element={<CreateNewActivity />} />
+      
         <Route path="/" element={<Home />} />
         <Route
           path="/login"
