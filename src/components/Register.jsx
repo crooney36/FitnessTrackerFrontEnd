@@ -10,26 +10,24 @@ const Register = (props) => {
   const Navigate = useNavigate();
 
   const handleSubmit = async (e) => {
-    console.log(username);
-    console.log(password);
-    // if (password === confirmedPassword) {
-    try {
+    if (password === confirmedPassword) {
       console.log("Passwords Match");
-      const user = await registerUser(username, password);
-      console.log(user, "//////");
-      if (user) {
-        console.log("Registering...");
-        localStorage.setItem("token", user.token);
-        // setToken("token");
-        setIsLoggedIn(true);
-        Navigate("/");
+      try {
+        const user = await registerUser(username, password);
+        if (user) {
+          console.log("Registering...");
+          localStorage.setItem("token", user.token);
+          setToken(localStorage.getItem(token));
+          setIsLoggedIn(true);
+          console.log(isLoggedIn);
+          Navigate("/");
+        }
+      } catch (error) {
+        console.error("Registration Failed", error);
       }
-    } catch (error) {
-      console.error("Registration Failed", error);
+    } else {
+      console.log("Passwords Do Not Match, registration failed!");
     }
-    // } else {
-    //   console.log("Passwords Do Not Match, registration failed!");
-    // }
   };
 
   return (
@@ -42,7 +40,7 @@ const Register = (props) => {
           handleSubmit();
         }}
       >
-        <label htmlFor="username">Username</label>
+        <label htmlFor="username">Username:</label>
         <input
           type="text"
           required
@@ -51,7 +49,7 @@ const Register = (props) => {
             setUsername(e.target.value);
           }}
         />
-        <label htmlFor="password">Password</label>
+        <label htmlFor="password">Password:</label>
         <input
           type="password"
           required
@@ -60,7 +58,7 @@ const Register = (props) => {
             setPassword(e.target.value);
           }}
         />
-        <label htmlFor="confirmedPassword">Confirm Password</label>
+        <label htmlFor="confirmedPassword">Confirm Password:</label>
         <input
           type="password"
           required
