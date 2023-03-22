@@ -16,10 +16,10 @@ const Register = (props) => {
         const user = await registerUser(username, password);
         if (user) {
           console.log("Registering...");
+          localStorage.setItem("token", user.token);
           setToken(localStorage.getItem(token));
-          setToken("token");
           setIsLoggedIn(true);
-          location.reload();
+          console.log(isLoggedIn);
           Navigate("/");
         }
       } catch (error) {

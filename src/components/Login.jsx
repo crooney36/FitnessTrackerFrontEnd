@@ -3,25 +3,22 @@ import { loginUser } from "../api/users";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = (props) => {
-  const token = props.token;
+  //   const token = props.token;
   const setToken = props.setToken;
-  const isLoggedIn = props.isLoggedIn;
-  const setIsLoggedIn = props.setIsLoggedIn;
+  //   const isLoggedIn = props.isLoggedIn;
+  //   const setIsLoggedIn = props.setIsLoggedIn;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const Navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     const data = await loginUser(username, password);
-    console.log(data);
-    console.log(data.token);
     if (data && data.token) {
       console.log("Logging in...");
       localStorage.setItem("token", data.token);
-      setToken(localStorage.getItem(token));
-      console.log(token, "token");
-      setIsLoggedIn(true);
-      console.log(isLoggedIn);
+      setToken(localStorage.getItem("token"));
+      //   setIsLoggedIn(true);
+      //   console.log(isLoggedIn);
       Navigate("/");
     } else {
       console.log("Login Failed");
@@ -30,7 +27,6 @@ const Login = (props) => {
 
   return (
     <div id="login">
-      <div id="login-title">Login</div>
       <form
         id="login-form"
         onSubmit={(element) => {

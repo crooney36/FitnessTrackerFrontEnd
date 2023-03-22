@@ -11,25 +11,26 @@ import {
   CreateNewRoutine,
 } from "./";
 const Main = () => {
-  const [token, setToken] = React.useState("");
-  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [token, setToken] = useState("");
+  // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    console.log(localStorage.getItem("token"), "/////");
-    if (localStorage.getItem("token")) {
-      setIsLoggedIn(true);
-    } else {
-      setIsLoggedIn(false);
-    }
-  }, [token]);
-
-  useEffect(() => {
-    console.log(isLoggedIn);
-  }, [isLoggedIn]);
+  // useEffect(() => {
+  //   if (token) {
+  //     setIsLoggedIn(true);
+  //     console.log(isLoggedIn, "if");
+  //   } else {
+  //     setIsLoggedIn(false);
+  //     console.log(isLoggedIn, "else");
+  //   }
+  // }, [token]);
 
   return (
     <div id="main">
-      <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+      <Navbar
+        // isLoggedIn={isLoggedIn}
+        // setIsLoggedIn={setIsLoggedIn}
+        setToken={setToken}
+      />
       <Routes>
         <Route path="routines" element={<Routine />} />
         <Route
@@ -42,8 +43,8 @@ const Main = () => {
           path="/login"
           element={
             <Login
-              setIsLoggedIn={setIsLoggedIn}
-              isLoggedIn={isLoggedIn}
+              // setIsLoggedIn={setIsLoggedIn}
+              // isLoggedIn={isLoggedIn}
               token={token}
               setToken={setToken}
             />
@@ -53,8 +54,8 @@ const Main = () => {
           path="/Register"
           element={
             <Register
-              setIsLoggedIn={setIsLoggedIn}
-              isLoggedIn={isLoggedIn}
+              // setIsLoggedIn={setIsLoggedIn}
+              // isLoggedIn={isLoggedIn}
               token={token}
               setToken={setToken}
             />
