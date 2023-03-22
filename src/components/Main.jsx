@@ -1,9 +1,20 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
-import { Home, Login, MyRoutines, Activities, Register, Navbar, Routine, CreateNewRoutine, CreateNewActivity, EditRoutine } from "./";
+import {
+  Home,
+  Login,
+  MyRoutines,
+  Activities,
+  Register,
+  Navbar,
+  Routine,
+  CreateNewRoutine,
+  CreateNewActivity,
+  EditRoutine,
+} from "./";
 const Main = () => {
   const [token, setToken] = useState("");
-  const [user, setUser] = useState()
+  const [user, setUser] = useState();
   // const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   // useEffect(() => {
@@ -24,13 +35,22 @@ const Main = () => {
         setToken={setToken}
       />
       <Routes>
-      <Route path="routines" element={<Routine user={user}  />} />
-      <Route path="routines/create-new-routine" element={<CreateNewRoutine />} />
-      <Route path="routines/edit-routine/:routineId" element={<EditRoutine />} />
-      <Route path="activities" element={<Activities />} />
-      <Route path="activities/create-new-activity" element={<CreateNewActivity />} />
-      
-        <Route path="/" element={<Home />} />
+        <Route path="routines" element={<Routine user={user} />} />
+        <Route
+          path="routines/create-new-routine"
+          element={<CreateNewRoutine />}
+        />
+        <Route
+          path="routines/edit-routine/:routineId"
+          element={<EditRoutine />}
+        />
+        <Route path="activities" element={<Activities />} />
+        <Route
+          path="activities/create-new-activity"
+          element={<CreateNewActivity />}
+        />
+
+        <Route path="/" element={<Home user={user} />} />
         <Route
           path="/login"
           element={

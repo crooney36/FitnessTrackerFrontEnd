@@ -20,16 +20,21 @@ const Navbar = (props) => {
             <Button>Login</Button>
           </Link>
         ) : (
-          <Button
-            onClick={() => {
-              localStorage.removeItem("token");
-              setToken("");
-              // setIsLoggedIn(false);
-              Navigate("/");
-            }}
-          >
-            Logout
-          </Button>
+          <div>
+            <Button
+              onClick={() => {
+                localStorage.removeItem("token");
+                setToken("");
+                // setIsLoggedIn(false);
+                Navigate("/");
+              }}
+            >
+              Logout
+            </Button>
+            <Link to="/my-routines">
+              <Button>My Routines</Button>
+            </Link>
+          </div>
         )}
         <Link to="activities">
           <Button>Activities</Button>{" "}
