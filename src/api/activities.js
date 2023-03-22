@@ -31,7 +31,9 @@ export const postActivity = async (name, description) => {
       });
   
       const result = await response.json();
-  
+      if(result.error){
+        window.alert(result.error)
+      }
       console.log(result);
       return result
     } catch (err) {

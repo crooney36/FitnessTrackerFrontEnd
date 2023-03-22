@@ -20,6 +20,7 @@ const Activities = () => {
         // }
         return result;
         } catch(error) {
+            window.alert(error)
             throw error
         }
         
@@ -33,7 +34,7 @@ const Activities = () => {
         <div id="activity">
             <h1>Activities!</h1>
             {
-                // isLoggedIn ? <button onClick={() => navigate("/routines/create-new-routine")}>Create New Routine!</button> : null 
+                isLoggedIn ? <button onClick={() => navigate("/activities/create-new-activity")}>Create New Activity!</button> : null 
             }
             {
                 activities.length ? activities.map((activity, idx) =>{
