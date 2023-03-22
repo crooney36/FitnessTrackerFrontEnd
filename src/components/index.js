@@ -8,3 +8,4 @@ export { default as Activities } from "./Activities";
 export { default as MyRoutines } from "./MyRoutines";
 export { default as CreateNewRoutine } from "./CreateNewRoutine"
 export { default as CreateNewActivity } from "./CreateNewActivity"
+export { default as EditRoutine } from "./EditRoutine"
