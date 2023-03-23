@@ -3,7 +3,7 @@ import { getAllActivities } from "../api/activities"
 import { useNavigate } from "react-router";
 
 const Activities = () => {
-    const [activities, setActivities] = useState([]);
+    const [ activities, setActivities ] = useState([]);
     const [ token, setToken ] = useState(null);
     const [ isLoggedIn, setLoggedIn ] = useState(true);
     let navigate = useNavigate();

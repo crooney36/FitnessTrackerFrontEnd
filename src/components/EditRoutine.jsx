@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react"
-import { updateRoutine } from "../api/routines"
+import { getAllRoutines, updateRoutine } from "../api/routines"
+import { getAllActivities } from "../api/activities"
 import { useNavigate } from "react-router";
 import { Switch } from 'antd';
 import { Link, useParams } from "react-router-dom";
@@ -8,6 +9,10 @@ const EditRoutine = () => {
     const [name, setName] = useState("");
     const [goal, setGoal] = useState("");
     const [isPublic, setIsPublic] = useState(true);
+    const [singleRoutine, setSingleRoutine] = useState([]);
+    const [activities, setActivities] = useState([]);
+    console.log(singleRoutine," ////////////////////////////////////////////////")
+    console.log(activities," ???????????????????????????????????????????????????????")
     let navigate = useNavigate()
     const onChange = (checked) => {
         console.log(`switch to ${checked}`);
@@ -28,6 +33,37 @@ async function sendUpdatedRoutine(name, goal, isPublic, routineId){
     }
 }
 
+async function allActivities(){
+  const result = await getAllActivities()
+  setActivities(result)
+  return result
+}
+
+async function getRoutine(){
+  const result = await getAllRoutines();
+  // console.log(result, " ///////////////////////////////////////////")
+  result.filter((routine) => {
+    if(routine.id === routineId){
+      setSingleRoutine(routine)
+      return true
+    }else{
+      return false
+    }
+  })
+}
+
+function filteredActivities(arr1, arr2){
+  arr2.filter((e)=>{
+    arr1.activities.name !== e.name
+  })
+}
+
+useEffect(() => {
+  allActivities(),
+  getRoutine()
+}, []);
+
+// console.log(filteredActivities(singleRoutine,activities))
     return(
         <div>
     <h1>Edit Routine!</h1>
