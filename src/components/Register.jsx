@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { registerUser } from "../api/users";
 
 const Register = (props) => {
-  const setIsLoggedIn = props.setIsLoggedIn;
+  // const setIsLoggedIn = props.setIsLoggedIn;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmedPassword, setConfirmedPassword] = useState("");
@@ -17,15 +17,16 @@ const Register = (props) => {
         if (user) {
           console.log("Registering...");
           localStorage.setItem("token", user.token);
+          localStorage.setItem("username", username);
           setToken(localStorage.getItem(token));
-          setIsLoggedIn(true);
-          console.log(isLoggedIn);
           Navigate("/");
         }
       } catch (error) {
+        window.alert("Registration Failed ", error);
         console.error("Registration Failed", error);
       }
     } else {
+      window.alert("Passwords Do Not Match, registration failed!");
       console.log("Passwords Do Not Match, registration failed!");
     }
   };

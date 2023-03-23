@@ -23,6 +23,7 @@ const Login = (props) => {
       Navigate("/");
       window.location.reload;
     } else {
+      window.alert("Username or Password is incorrect");
       console.log("Login Failed");
     }
   };
