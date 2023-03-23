@@ -3,10 +3,9 @@ import { Link, Navigate, useNavigate } from "react-router-dom";
 import React, { useEffect } from "react";
 
 const Navbar = (props) => {
-  // const isLoggedIn = props.isLoggedIn;
-  // const setIsLoggedIn = props.setIsLoggedIn;
   const setToken = props.setToken;
-  const isLoggedIn = props.isLoggedIn
+  const isLoggedIn = props.isLoggedIn;
+  const setIsLoggedIn = props.setIsLoggedIn;
   const Navigate = useNavigate();
 
   return (
@@ -25,9 +24,11 @@ const Navbar = (props) => {
             <Button
               onClick={() => {
                 localStorage.removeItem("token");
+                localStorage.removeItem("username");
                 setToken("");
-                // setIsLoggedIn(false);
+                setIsLoggedIn(false);
                 Navigate("/");
+                window.location.reload();
               }}
             >
               Logout

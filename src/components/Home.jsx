@@ -1,7 +1,7 @@
 import React from "react";
 
 const Home = (props) => {
-  const user = props.user;
+  const user = localStorage.getItem("username");
   return (
     <div id="home">
       <div id="home-title">

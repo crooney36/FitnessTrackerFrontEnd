@@ -18,12 +18,12 @@ const Main = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const localStorageToken = localStorage.getItem("token")
-    const localStorageUsername = localStorage.getItem("username")
+    const localStorageToken = localStorage.getItem("token");
+    const localStorageUsername = localStorage.getItem("username");
     if (localStorageToken) {
       setIsLoggedIn(true);
-      setToken(localStorageToken)
-      setUser(localStorageUsername)
+      setToken(localStorageToken);
+      setUser(localStorageUsername);
       console.log(isLoggedIn, "if");
     } else {
       setIsLoggedIn(false);
@@ -35,7 +35,7 @@ const Main = () => {
     <div id="main">
       <Navbar
         isLoggedIn={isLoggedIn}
-        // setIsLoggedIn={setIsLoggedIn}
+        setIsLoggedIn={setIsLoggedIn}
         setToken={setToken}
       />
       <Routes>
@@ -59,8 +59,8 @@ const Main = () => {
           path="/login"
           element={
             <Login
-              // setIsLoggedIn={setIsLoggedIn}
-              // isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
+              isLoggedIn={isLoggedIn}
               setUser={setUser}
               token={token}
               setToken={setToken}
@@ -71,8 +71,19 @@ const Main = () => {
           path="/Register"
           element={
             <Register
-              // setIsLoggedIn={setIsLoggedIn}
-              // isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
+              isLoggedIn={isLoggedIn}
+              token={token}
+              setToken={setToken}
+            />
+          }
+        />
+        <Route
+          path="/my-routines"
+          element={
+            <MyRoutines
+              isLoggedIn={isLoggedIn}
+              setIsLoggedIn={setIsLoggedIn}
               token={token}
               setToken={setToken}
             />
