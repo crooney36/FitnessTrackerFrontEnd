@@ -3,13 +3,13 @@ import { loginUser } from "../api/users";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = (props) => {
-  //   const token = props.token;
+  const token = props.token;
   const setToken = props.setToken;
-  //   const isLoggedIn = props.isLoggedIn;
-  //   const setIsLoggedIn = props.setIsLoggedIn;
+  const isLoggedIn = props.isLoggedIn;
+  const setIsLoggedIn = props.setIsLoggedIn;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const setUser = props.setUser
+  const setUser = props.setUser;
   const Navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -19,10 +19,9 @@ const Login = (props) => {
       localStorage.setItem("token", data.token);
       localStorage.setItem("username", username);
       setToken(localStorage.getItem("token"));
-      setUser(username)
       setIsLoggedIn(true);
-      //   console.log(isLoggedIn);
       Navigate("/");
+      window.location.reload;
     } else {
       console.log("Login Failed");
     }

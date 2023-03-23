@@ -1,5 +1,6 @@
 import { Cascader } from "antd";
-const options = [
+
+const cascader = [
   {
     value: "zhejiang",
     label: "Zhejiang",
@@ -33,6 +34,7 @@ const options = [
     ],
   },
 ];
+
 const onChange = (value) => {
   console.log(value);
 };
