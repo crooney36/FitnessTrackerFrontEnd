@@ -10,7 +10,7 @@ import {
   deleteRoutineActivities,
 } from "../api/routine_activities";
 import { useNavigate } from "react-router";
-import { Switch } from "antd";
+// import { Switch } from "antd";
 import { Link, useParams, useLocation } from "react-router-dom";
 
 const EditRoutine = () => {
@@ -26,7 +26,7 @@ const EditRoutine = () => {
     console.log(`switch to ${checked}`);
     setIsPublic(checked);
   };
-  const App = () => <Switch defaultChecked onChange={onChange} />;
+  // const App = () => <Switch defaultChecked onChange={onChange} />;
   const { routineId } = useParams();
   const location = useLocation();
   const { routine } = location.state;
@@ -142,7 +142,7 @@ const EditRoutine = () => {
 
         <label>
           Public:
-          {App()}
+          {/* {App()} */}
         </label>
 
         <button type="submit">Submit</button>
