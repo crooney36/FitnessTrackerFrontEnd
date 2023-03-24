@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
+import { Link } from "react-router-dom";
 
 const SingleRoutine = (props) => {
   const routine = props.routine;
@@ -13,11 +14,11 @@ const SingleRoutine = (props) => {
 
       {routine.creatorName === user ? (
         <div>
-          <button
-            onClick={() => navigate(`/routines/edit-routine/${routine.id}`)}
-          >
-            Edit
-          </button>
+          <Link to={`/routines/edit-routine/${routine.id}`} state={{routine: routine}}>
+            <button>
+              edit
+            </button>
+          </Link>
           <button
             id="DELETE_BUTTON"
             onClick={() => deletePostHandler(routine.id)}
