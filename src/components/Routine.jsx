@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getAllRoutines, deleteRoutine } from "../api/routines";
 import { useNavigate } from "react-router";
-import { Cascader } from "antd";
+import { Button } from "antd";
 import SingleRoutine from "./SingleRoutine";
 
 const Routine = (props) => {
@@ -9,22 +9,7 @@ const Routine = (props) => {
   const [routines, setRoutines] = useState([]);
   const [token, setToken] = useState("");
   const [isLoggedIn, setLoggedIn] = useState(null);
-
-  //   const options = [{}];
-  //   const onChange = (value) => {
-  //     console.log(value);
-  //   };
-  //   const App = () => (
-  //     <Cascader
-  //       style={{
-  //         width: "100%",
-  //       }}
-  //       options={options}
-  //       onChange={onChange}
-  //       multiple
-  //       maxTagCount="responsive"
-  //     />
-  //   );
+  const navigate = useNavigate();
 
   const allRoutines = async () => {
     try {
@@ -66,12 +51,29 @@ const Routine = (props) => {
   }, []);
 
   return (
-    routines.map((routine, idx)=>{
-      return(
-        <SingleRoutine routine={routine} key={`idx: ${idx}`}/>
-      )
-    })
-  )
+    <div>
+      {localStorage.getItem("token") ? (
+        <Button onClick={() => navigate("/routines/create-new-routine")}>
+          Create New Routine!
+        </Button>
+      ) : (
+        <div></div>
+      )}
+      <div id="grid-wrapper">
+        <div id="routine-container">
+          {routines.map((routine, idx) => {
+            return (
+              <SingleRoutine
+                routine={routine}
+                key={`idx: ${idx}`}
+                deletePostHandler={deletePostHandler}
+              />
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default Routine;

@@ -1,6 +1,8 @@
 body {
   margin: 0;
   background-color: slategray;
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
 }
 #navbar {
   background-color: black;
@@ -37,6 +39,56 @@ body {
   right: 0;
 }
 
+#image-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+#routine-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 20;
+}
+
+.routine-card {
+  background-color: rgba(25, 201, 165, 0.1);
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 20px;
+  text-align: center;
+}
+
+.allActivities {
+  background-color: rgba(25, 201, 165, 0.1);
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  padding: 20px;
+  text-align: center;
+}
+#activity-container {
+  font-size: 0.7rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 50px;
+}
+
+#grid-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
 input {
   margin: 0.5rem;
   padding: 0.5rem;

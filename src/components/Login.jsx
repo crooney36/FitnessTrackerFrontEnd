@@ -48,7 +48,7 @@ const Login = (props) => {
         />
         <label htmlFor="password">Password:</label>
         <input
-          type="current-password"
+          type="password"
           required
           value={password}
           onChange={(e) => {

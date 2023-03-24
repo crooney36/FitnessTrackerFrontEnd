@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { getAllRoutines } from "../api/routines";
 import { useNavigate } from "react-router";
+import { Button } from "antd";
+import SingleRoutine from "./SingleRoutine";
+import deletePostHandler from "./SingleRoutine";
 
 const MyRoutines = () => {
   const [routines, setRoutines] = useState([]);
@@ -26,37 +29,25 @@ const MyRoutines = () => {
   return (
     <div>
       {localStorage.getItem("token") ? (
-        <div>
-          <h1>My Routines</h1>
-          <h2>Here are your routines!</h2>
-          <div>
-            {myRoutines.map((routine) => {
-              return (
-                <div key={routine.id}>
-                  <h3>Name: {routine.name}</h3>
-                  <h4>Goal: {routine.goal}</h4>
-                  <h5>Creator: {routine.creatorName}</h5>
-                  <button
-                    onClick={() =>
-                      navigate(`/routines/edit-routine/${routine.id}`)
-                    }
-                  >
-                    Edit Routine
-                  </button>
-                  <button onClick={() => deletePostHandler(routine.id)}>
-                    Delete Routine
-                  </button>
-                </div>
-              );
-            })}
-          </div>
-        </div>
+        <Button onClick={() => navigate("/routines/create-new-routine")}>
+          Create New Routine!
+        </Button>
       ) : (
-        <div>
-          <h1>My Routines</h1>
-          <h2>You must be logged in to view your routines!</h2>
-        </div>
+        <div></div>
       )}
+      {/* <div id="grid-wrapper"> */}
+      <div id="routine-container">
+        {myRoutines.map((routine, idx) => {
+          return (
+            <SingleRoutine
+              routine={routine}
+              key={`idx: ${idx}`}
+              deletePostHandler={deletePostHandler}
+            />
+          );
+        })}
+      </div>
+      {/* </div> */}
     </div>
   );
 };
