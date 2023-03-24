@@ -24,7 +24,7 @@ const Main = () => {
       setIsLoggedIn(true);
       setToken(localStorageToken);
       setUser(localStorageUsername);
-      console.log(isLoggedIn, "if");
+      // console.log(isLoggedIn, "if");
     } else {
       setIsLoggedIn(false);
       console.log(isLoggedIn, "else");
