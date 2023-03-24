@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react"
-import { getAllRoutines, updateRoutine } from "../api/routines"
+import { getAllRoutines, updateRoutine, attachActivityToRoutine } from "../api/routines"
 import { getAllActivities } from "../api/activities"
 import { useNavigate } from "react-router";
 import { Switch } from 'antd';
@@ -9,17 +9,17 @@ const EditRoutine = () => {
     const [name, setName] = useState("");
     const [goal, setGoal] = useState("");
     const [isPublic, setIsPublic] = useState(true);
-    const [singleRoutine, setSingleRoutine] = useState([]);
+    const [singleRoutine, setSingleRoutine] = useState({});
+    // console.log(singleRoutine," ////////////singleRoutine////////////")
     const [activities, setActivities] = useState([]);
-    console.log(singleRoutine," ////////////////////////////////////////////////")
-    console.log(activities," ???????????????????????????????????????????????????????")
-    let navigate = useNavigate()
+    const navigate = useNavigate()
+    
     const onChange = (checked) => {
         console.log(`switch to ${checked}`);
         setIsPublic(checked)
     };
     const App = () => <Switch defaultChecked onChange={onChange} />;
-    let { routineId } = useParams()
+    const { routineId } = useParams()
 
 async function sendUpdatedRoutine(name, goal, isPublic, routineId){
     try {
@@ -41,29 +41,60 @@ async function allActivities(){
 
 async function getRoutine(){
   const result = await getAllRoutines();
-  // console.log(result, " ///////////////////////////////////////////")
-  result.filter((routine) => {
-    if(routine.id === routineId){
-      setSingleRoutine(routine)
-      return true
-    }else{
-      return false
-    }
+  const matchedRoutine = result.filter((routine) => {
+    return routine.id === Number(routineId)
   })
+  // console.log(matchedRoutine[0]," ////////////////////////////////")
+  if(matchedRoutine){
+    setSingleRoutine(matchedRoutine[0])
+  }
 }
 
-function filteredActivities(arr1, arr2){
-  arr2.filter((e)=>{
-    arr1.activities.name !== e.name
-  })
+console.log(singleRoutine," ////////singleRoutine///////")
+console.log(activities," ////////activities/////////")
+const filteredActivities = activities.filter((activity)=>{
+  for(let i = 0; i < singleRoutine.activities.length; i++){
+    if(activity.name === singleRoutine.activities[i].name){
+      return false
+    }
+  }
+  return true
+})
+
+// console.log(filteredActivities)
+// function filteredActivities(singleRoutine, activities, ){
+//   const singleRoutineArr = singleRoutine.activities
+//   console.log(singleRoutineArr, " ///////////////////////")
+//   const filteredArr = []
+//   if(singleRoutineArr){
+//     console.log("in if")
+//     allActivitiesArr.filter((activity)=>{
+//       if(activity.name !== singleRoutineArr.name){
+//         filteredArr.push(activity)
+//         // console.log(filteredArr, " ///////////////////////////////")
+//         return filteredArr
+//       }
+//     })
+//   }else{
+//     console.log("in else")
+//     return allActivitiesArr
+//   }
+// }
+
+// console.log(filteredActivities(singleRoutine.activities, activities))
+
+
+async function attachActivity(activityId, count, duration, routineId){
+  const result = await attachActivityToRoutine(activityId, count, duration, routineId)
+  return result
 }
 
 useEffect(() => {
-  allActivities(),
-  getRoutine()
+  getRoutine(),
+  allActivities()
 }, []);
 
-// console.log(filteredActivities(singleRoutine,activities))
+
     return(
         <div>
     <h1>Edit Routine!</h1>
@@ -100,6 +131,15 @@ useEffect(() => {
       {
         App()
       }
+      <select>
+        {
+          filteredActivities.map((activity, idx)=>{
+            return(
+              <option key={`idx:${idx}`}>{activity.name}</option>
+            )
+          })
+        }
+      </select>
         {/* <input
         name="public"
         type="text"
