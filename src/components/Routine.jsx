@@ -15,7 +15,6 @@ const Routine = (props) => {
     try {
       const result = await getAllRoutines();
       setRoutines(result);
-      console.log(localStorage.getItem("token"));
       setToken(localStorage.getItem("token"));
       if (token) {
         setLoggedIn(true);
@@ -23,24 +22,6 @@ const Routine = (props) => {
         setLoggedIn(false);
       }
       return result;
-    } catch (error) {
-      throw error;
-    }
-  };
-
-  const deletePostHandler = async (routineId) => {
-    try {
-      await deleteRoutine(routineId);
-      const routineCopy = [...routines];
-      const filteredRoutines = routineCopy.filter((routine) => {
-        if (routine.id !== routineId) {
-          return true;
-        }
-        {
-          return false;
-        }
-      });
-      setRoutines(filteredRoutines);
     } catch (error) {
       throw error;
     }
@@ -66,7 +47,7 @@ const Routine = (props) => {
               <SingleRoutine
                 routine={routine}
                 key={`idx: ${idx}`}
-                deletePostHandler={deletePostHandler}
+                routines={routines}
               />
             );
           })}

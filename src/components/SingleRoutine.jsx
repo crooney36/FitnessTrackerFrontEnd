@@ -1,10 +1,28 @@
-import React from "react";
-import { useNavigate } from "react-router";
+import React, { useState } from "react";
+import { deleteRoutine } from "../api/routines";
 import { Link } from "react-router-dom";
 
 const SingleRoutine = (props) => {
   const routine = props.routine;
   const user = localStorage.getItem("username");
+  const routines = props.routines;
+  const [newRoutines, setNewRoutines] = useState([]);
+  const deletePostHandler = async (routineId) => {
+    try {
+      await deleteRoutine(routineId);
+      const routineCopy = [...routines];
+      const filteredRoutines = routineCopy.filter((routine) => {
+        if (routine.id !== routineId) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+      setNewRoutines(filteredRoutines);
+    } catch (error) {
+      throw error;
+    }
+  };
   return (
     <div className="routine-card">
       <h1>{routine.name}</h1>
