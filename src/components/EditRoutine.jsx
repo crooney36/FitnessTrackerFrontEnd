@@ -36,7 +36,12 @@ const EditRoutine = () => {
       setName(name);
       setGoal(goal);
       setIsPublic(isPublic);
-      return result;
+      if (result.error) {
+        return null;
+      } else {
+        navigate("/routines");
+        return result;
+      }
     } catch (error) {
       throw error;
     }
@@ -49,17 +54,36 @@ const EditRoutine = () => {
   }
 
   async function sendUpdatedActivity(count, duration, routineActivityId) {
-    const result = await updateRoutineActivity(
-      count,
-      duration,
-      routineActivityId
-    );
-    return result;
+    if (!count || !duration) {
+      window.alert("Activity Name and/or duration must be filled out");
+      return null;
+    } else {
+      try {
+        const result = await updateRoutineActivity(
+          count,
+          duration,
+          routineActivityId
+        );
+        if (result.error) {
+          return null;
+        } else {
+          navigate("/routines");
+          return result;
+        }
+      } catch (error) {
+        throw error;
+      }
+    }
   }
 
   async function sendDeletedActivity(routineActivityId) {
     const result = await deleteRoutineActivities(routineActivityId);
-    return result;
+    if (result.error) {
+      return null;
+    } else {
+      navigate("/routines");
+      return result;
+    }
   }
 
   const filteredActivities = activities.filter((activity) => {

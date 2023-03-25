@@ -9,7 +9,7 @@ const SingleRoutine = (props) => {
   const [newRoutines, setNewRoutines] = useState([]);
   const deletePostHandler = async (routineId) => {
     try {
-      await deleteRoutine(routineId);
+      const result = await deleteRoutine(routineId);
       const routineCopy = [...routines];
       const filteredRoutines = routineCopy.filter((routine) => {
         if (routine.id !== routineId) {
@@ -18,11 +18,18 @@ const SingleRoutine = (props) => {
           return false;
         }
       });
-      setNewRoutines(filteredRoutines);
+      if (result.error) {
+        return null;
+      } else {
+        setNewRoutines(filteredRoutines);
+        window.location.reload();
+        return result;
+      }
     } catch (error) {
       throw error;
     }
   };
+
   return (
     <div className="routine-card">
       <h1>{routine.name}</h1>
