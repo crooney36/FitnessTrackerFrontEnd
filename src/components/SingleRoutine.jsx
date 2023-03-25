@@ -1,11 +1,35 @@
-import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import React, { useState } from "react";
+import { deleteRoutine } from "../api/routines";
 import { Link } from "react-router-dom";
 
 const SingleRoutine = (props) => {
   const routine = props.routine;
   const user = localStorage.getItem("username");
-  let navigate = useNavigate();
+  const routines = props.routines;
+  const [newRoutines, setNewRoutines] = useState([]);
+  const deletePostHandler = async (routineId) => {
+    try {
+      const result = await deleteRoutine(routineId);
+      const routineCopy = [...routines];
+      const filteredRoutines = routineCopy.filter((routine) => {
+        if (routine.id !== routineId) {
+          return true;
+        } else {
+          return false;
+        }
+      });
+      if (result.error) {
+        return null;
+      } else {
+        setNewRoutines(filteredRoutines);
+        window.location.reload();
+        return result;
+      }
+    } catch (error) {
+      throw error;
+    }
+  };
+
   return (
     <div className="routine-card">
       <h1>{routine.name}</h1>
@@ -14,10 +38,11 @@ const SingleRoutine = (props) => {
 
       {routine.creatorName === user ? (
         <div>
-          <Link to={`/routines/edit-routine/${routine.id}`} state={{routine: routine}}>
-            <button>
-              edit
-            </button>
+          <Link
+            to={`/routines/edit-routine/${routine.id}`}
+            state={{ routine: routine }}
+          >
+            <button>edit</button>
           </Link>
           <button
             id="DELETE_BUTTON"

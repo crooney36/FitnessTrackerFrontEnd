@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "../style.css";
 import { Routes, Route } from "react-router-dom";
 import {
   Home,
@@ -24,10 +25,8 @@ const Main = () => {
       setIsLoggedIn(true);
       setToken(localStorageToken);
       setUser(localStorageUsername);
-      // console.log(isLoggedIn, "if");
     } else {
       setIsLoggedIn(false);
-      console.log(isLoggedIn, "else");
     }
   }, []);
 

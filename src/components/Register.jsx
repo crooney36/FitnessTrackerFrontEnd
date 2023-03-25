@@ -11,7 +11,6 @@ const Register = (props) => {
 
   const handleSubmit = async (e) => {
     if (password === confirmedPassword) {
-      console.log("Passwords Match");
       try {
         const user = await registerUser(username, password);
         if (user) {
